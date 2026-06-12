@@ -4,7 +4,8 @@
       "Bash(python3 *)",
       "Bash(echo \"EXIT:$?\")",
       "Bash(curl *)",
-      "Bash(echo \"EXITCODE:$?\")"
+      "Bash(echo \"EXITCODE:$?\")",
+      "Bash(git init *)"
     ]
   }
 }

@@ -41,7 +41,7 @@ C:\Code\Claude/              ← 主仓库（统一管理）
 1. **克隆仓库**
    - 首次克隆时需加上 `--recursive` 参数以初始化所有子仓库：
      ```bash
-     git clone --recursive https://github.com/yourname/C--Code-Claude.git
+     git clone --recursive https://github.com/zhimaxu/Claude_Vibe_Coding.git
      ```
    - 如果忘记加 `--recursive`，进入仓库后执行：
      ```bash
