@@ -10,7 +10,7 @@
 
 | # | 任务 | GitHub 仓库 | 状态 | 说明 |
 |:-:|:----:|:-----------:|:----:|:----|
-| 1 | 博客 | [`blog`](https://github.com/zhimaxu/blog) | 🔄 进行中 | 个人博客 |
+| 1 | 博客 | [`blog`](https://github.com/zhimaxu/blog) _(基于 [Firefly](https://github.com/zimovade/Firefly) 模板)_ | 🔄 进行中 | 个人博客 |
 | 2 | AI 客服 | [`ai customer service`](https://github.com/zhimaxu/ai-customer-service) | ⬜ 待开始 | 智能对话客服系统 |
 | 3 | 游戏 Mod | [`oni-mods`](https://github.com/zhimaxu/oni-mods) | ⬜ 待开始 | 游戏模组开发与修改 |
 
@@ -21,7 +21,6 @@
 - 提升编程能力
 - 体验 AI 协作开发的效率
 - 产出三个完整的实战项目
-
 ---
 
 ## ⚙️ 仓库架构
