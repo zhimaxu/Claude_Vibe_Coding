@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 *)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(curl *)",
+      "Bash(echo \"EXITCODE:$?\")",
+      "Bash(git init *)"
+    ]
+  }
+}
