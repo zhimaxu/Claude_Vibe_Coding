@@ -1,3 +1,12 @@
 [submodule "home-page"]
 	path = home-page
 	url = https://github.com/zhimaxu/home-page.git
+[submodule "blog"]
+	path = blog
+	url = https://github.com/zhimaxu/blog.git
+[submodule "ai-customer-service"]
+	path = ai-customer-service
+	url = https://github.com/zhimaxu/ai-customer-service.git
+[submodule "oni-mods"]
+	path = oni-mods
+	url = https://github.com/zhimaxu/oni-mods.git
