@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>zhimaxu - 简历</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: #0f0c29;
+    background-image:
+      radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%),
+      radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+    background-attachment: fixed;
+    background-size: cover;
+    color: #e2e8f0;
+    min-height: 100vh;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: rgba(255,255,255,.05); }
+  ::-webkit-scrollbar-thumb { background: rgba(236,72,153,.5); border-radius: 4px; }
+
+  /* Animated background orbs */
+  .bg-orbs { position: fixed; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; }
+  .orb {
+    position: absolute; border-radius: 50%;
+    background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+    opacity: .12; filter: blur(60px);
+    animation: orbFloat 20s ease-in-out infinite alternate;
+  }
+  .orb:nth-child(1) { width: 500px; height: 500px; top: -10%; left: -5%; animation-duration: 25s; }
+  .orb:nth-child(2) { width: 400px; height: 400px; top: 40%; right: -8%; animation-duration: 30s; animation-delay: -5s; background: linear-gradient(45deg, #667eea, #764ba2); }
+  .orb:nth-child(3) { width: 350px; height: 350px; bottom: -5%; left: 30%; animation-duration: 22s; animation-delay: -10s; }
+  @keyframes orbFloat {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(40px, -30px) scale(1.1); }
+    100% { transform: translate(-20px, 20px) scale(.95); }
+  }
+
+  .container {
+    position: relative; z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 32px 60px;
+  }
+
+  /* ── Header ── */
+  .resume-header { text-align: center; margin-bottom: 36px; }
+  .resume-header h1 {
+    font-size: 36px; font-weight: 800;
+    background: linear-gradient(135deg, #ec4899, #a855f7, #6366f1);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px; letter-spacing: 2px;
+  }
+  .resume-header .contact {
+    font-size: 13px; color: rgba(255,255,255,.65); line-height: 2;
+  }
+  .resume-header .contact a {
+    color: rgba(255,255,255,.75); text-decoration: none;
+    transition: color .3s;
+  }
+  .resume-header .contact a:hover { color: #f472b6; }
+
+  /* ── Glass Card ── */
+  .card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 1.25rem;
+    backdrop-filter: blur(12px);
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    transition: border-color .3s, box-shadow .3s;
+  }
+  .card:hover {
+    border-color: rgba(236,72,153,.2);
+    box-shadow: 0 8px 32px rgba(236,72,153,.08);
+  }
+
+  /* ── Section Title ── */
+  .section-title {
+    font-size: 17px; font-weight: 800;
+    background: linear-gradient(90deg, #f472b6, #a78bfa);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-title i {
+    background: linear-gradient(135deg, #ec4899, #a855f7);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 15px;
+  }
+  .section-title::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, rgba(236,72,153,.3), transparent);
+  }
+
+  /* ── Bullet List ── */
+  ul.bullet { list-style: none; padding: 0; }
+  ul.bullet li {
+    position: relative; padding-left: 18px; margin-bottom: 6px;
+    font-size: 13.5px; line-height: 1.75; color: rgba(255,255,255,.8);
+  }
+  ul.bullet li::before {
+    content: ''; position: absolute; left: 0; top: 10px;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: linear-gradient(135deg, #ec4899, #a855f7);
+    box-shadow: 0 0 6px rgba(236,72,153,.4);
+  }
+
+  /* ── Entry (experience / project) ── */
+  .entry { margin-bottom: 22px; }
+  .entry:last-child { margin-bottom: 0; }
+  .entry-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    flex-wrap: wrap; gap: 4px; margin-bottom: 2px;
+  }
+  .entry-name {
+    font-size: 15px; font-weight: 700; color: #f1f5f9;
+  }
+  .entry-role { font-size: 14px; font-weight: 400; color: rgba(255,255,255,.65); }
+  .entry-date {
+    font-size: 12.5px; color: rgba(255,255,255,.45); white-space: nowrap;
+    font-style: italic;
+  }
+
+  /* ── Tech Tag ── */
+  .tech {
+    font-size: 13px; color: rgba(255,255,255,.55);
+    margin: 4px 0 8px;
+  }
+  .tech strong { color: rgba(255,255,255,.75); font-weight: 600; }
+  .tech-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .tech-tags span {
+    display: inline-block; padding: 2px 10px;
+    background: rgba(236,72,153,.1);
+    border: 1px solid rgba(236,72,153,.15);
+    border-radius: 999px; font-size: 12px;
+    color: rgba(255,255,255,.7);
+    transition: background .3s, border-color .3s;
+  }
+  .tech-tags span:hover {
+    background: rgba(236,72,153,.18);
+    border-color: rgba(236,72,153,.35);
+  }
+
+  /* ── Divider ── */
+  .divider { border: none; border-top: 1px solid rgba(255,255,255,.06); margin: 6px 0 18px; }
+
+  /* ── Education ── */
+  .edu-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    flex-wrap: wrap; gap: 4px;
+  }
+  .edu-school { font-size: 15px; font-weight: 700; color: #f1f5f9; }
+  .edu-meta { font-size: 14px; font-weight: 400; color: rgba(255,255,255,.55); }
+
+  /* ── Animations ── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .card { animation: fadeInUp .5s ease both; }
+  .card:nth-child(1) { animation-delay: .05s; }
+  .card:nth-child(2) { animation-delay: .1s; }
+  .card:nth-child(3) { animation-delay: .15s; }
+  .card:nth-child(4) { animation-delay: .2s; }
+  .card:nth-child(5) { animation-delay: .25s; }
+  .card:nth-child(6) { animation-delay: .3s; }
+
+  /* ── Print ── */
+  @media print {
+    body { background: #fff !important; color: #1a1a1a !important; }
+    .bg-orbs { display: none; }
+    .card { background: #fff !important; border: 1px solid #e5e7eb !important; box-shadow: none !important; backdrop-filter: none !important; }
+    .card:hover { box-shadow: none !important; }
+    .section-title, .section-title i { background: none !important; -webkit-text-fill-color: #1a1a1a !important; color: #1a1a1a !important; }
+    ul.bullet li { color: #374151 !important; }
+    ul.bullet li::before { background: #6366f1 !important; box-shadow: none !important; }
+    .entry-name { color: #1a1a1a !important; }
+    .entry-date { color: #6b7280 !important; }
+    .tech { color: #6b7280 !important; }
+    .tech strong { color: #374151 !important; }
+    .tech-tags span { background: #f3f4f6 !important; border-color: #e5e7eb !important; color: #374151 !important; }
+    .tech-tags span:hover { background: #e5e7eb !important; }
+    .resume-header h1 { background: none !important; -webkit-text-fill-color: #1a1a1a !important; }
+    .resume-header .contact { color: #6b7280 !important; }
+    .resume-header .contact a { color: #6366f1 !important; }
+    .edu-school { color: #1a1a1a !important; }
+    .edu-meta { color: #6b7280 !important; }
+    .entry { break-inside: avoid; }
+    .section { break-inside: avoid; }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .container { padding: 24px 16px 40px; }
+    .card { padding: 20px 18px; }
+    .resume-header h1 { font-size: 28px; }
+    .entry-header { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Background Orbs -->
+<div class="bg-orbs">
+  <div class="orb"></div>
+  <div class="orb"></div>
+  <div class="orb"></div>
+</div>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="resume-header">
+    <h1><i class="fas fa-wand-magic-sparkles" style="background:linear-gradient(135deg,#facc15,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-right:6px;font-size:30px;"></i>zhimaxu</h1>
+    <div class="contact">
+      <i class="fas fa-phone"></i> 185-xxxx-xxxx &nbsp;&nbsp;
+      <i class="fas fa-envelope"></i> <a href="mailto:zhimaxu@foxmail.com">zhimaxu@foxmail.com</a> &nbsp;&nbsp;
+      <i class="fas fa-location-dot"></i> 北京<br>
+      <i class="fas fa-globe"></i> <a href="https://19930618.xyz" target="_blank">19930618.xyz</a> &nbsp;&nbsp;
+      <i class="fab fa-github"></i> <a href="https://github.com/zhimaxu" target="_blank">zhimaxu</a>
+    </div>
+  </div>
+
+  <!-- 个人优势 -->
+  <div class="card">
+    <h2 class="section-title"><i class="fas fa-star"></i> 个人优势</h2>
+    <ul class="bullet">
+      <li>9 年后端开发经验，具备 Java/.NET 双技术栈能力，能根据业务场景灵活选型</li>
+      <li>拥有多个单体系统向微服务、多模块架构改造的实战经验，擅长系统拆分与重构</li>
+      <li>全栈能力突出，除后端外能独立完成 Vue 前端、小程序开发，减少跨团队沟通成本</li>
+      <li>具备 DevOps 与 IT 运维经验，能独立完成系统部署、监控、故障排查，是团队中的"多面手"</li>
+      <li>熟悉从 0 到 1 构建业务系统的全流程，具备较强的独立交付能力和主人翁意识</li>
+      <li>良好的学习能力与自驱力，能快速上手新技术并应用到实际项目中</li>
+    </ul>
+  </div>
+
+  <!-- 专业技能 -->
+  <div class="card">
+    <h2 class="section-title"><i class="fas fa-code"></i> 专业技能</h2>
+    <ul class="bullet">
+      <li>精通 Java，熟练使用 Spring Boot、Spring Cloud、MyBatis 等框架进行企业级应用开发</li>
+      <li>熟悉 .NET 技术栈，能使用 ASP.NET Core、Entity Framework 进行后端服务开发</li>
+      <li>熟悉微服务架构设计，具备多个单体项目合并到微服务、多模块架构的改造经验</li>
+      <li>熟悉从 0 到 1 构建业务系统的全流程，包括需求分析、架构设计、开发、测试、部署上线</li>
+      <li>熟练使用 Vue.js、Element UI 等前端技术开发管理后台及 H5 页面</li>
+      <li>有微信小程序开发经验，独立完成过小程序从 0 到上线的全流程</li>
+      <li>熟悉 Linux 系统管理与常用命令，具备服务器部署和维护经验</li>
+      <li>熟悉 CI/CD 流程，有 Docker 容器化部署经验</li>
+      <li>熟悉单元测试与接口自动化测试，有 JUnit、Postman 等工具的使用经验</li>
+      <li>具备企业内部 IT 支持经验，包括网络管理、硬件维护、系统故障排查等</li>
+      <li>熟悉 Python，具备脚本编写与自动化开发能力</li>
+      <li>熟悉树莓派 ARM 开发，具备嵌入式硬件与软件协同开发经验</li>
+    </ul>
+  </div>
+
+  <!-- 工作经历 -->
+  <div class="card">
+    <h2 class="section-title"><i class="fas fa-briefcase"></i> 工作经历</h2>
+    <hr class="divider">
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-name"><i class="fas fa-cube" style="color:#a78bfa;margin-right:6px;font-size:13px;"></i>无锡xxxx有限公司 <span class="entry-role">| AI全栈开发工程师</span></span>
+        <span class="entry-date"><i class="far fa-calendar-alt"></i> 2025.09 – 至今</span>
+      </div>
+      <ul class="bullet">
+        <li>负责软硬件技术支持，保障系统与硬件设备稳定运行</li>
+        <li>探索电商平台数智化解决方案，推动 AI 在电商场景的落地应用</li>
+        <li>独立完成 AI 客服系统的搭建与试用，包括意图识别、知识库配置、对话流程设计</li>
+        <li>协助团队进行 AI 工具的日常使用与推广，提升工作效率</li>
+      </ul>
+      <div class="tech"><strong><i class="fas fa-layer-group"></i> 技术栈：</strong>
+        <div class="tech-tags">
+          <span>AI 应用</span><span>Python</span><span>Vue.js</span><span>电商平台</span><span>软硬件集成</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-name"><i class="fas fa-cube" style="color:#a78bfa;margin-right:6px;font-size:13px;"></i>无锡xxxx有限公司 <span class="entry-role">| 全栈开发工程师（软硬件支持/运维）</span></span>
+        <span class="entry-date"><i class="far fa-calendar-alt"></i> 2020.05 – 2025.09</span>
+      </div>
+      <ul class="bullet">
+        <li>主导多个核心业务系统从 0 到 1 的落地，包括匹配系统、收付款系统、聚合支付平台、业务管理平台</li>
+        <li>因业务变动完成系统的重构与持续优化迭代，保障系统灵活应对业务调整</li>
+        <li>核心功能定制化：针对审批流程进行个性化开发，满足不同场景需求</li>
+        <li>按银行/平台要求定制化开发表格导出功能，确保财务数据合规输出</li>
+        <li>设计收款后动态资金分配机制，实现多渠道收款后的自动清算与分发</li>
+        <li>对接多家灵工平台，解决收款后合规支出与税务问题</li>
+        <li>接入 OCR 识别、OSS 对象存储等云服务，提升系统智能化与数据处理效率</li>
+      </ul>
+      <div class="tech"><strong><i class="fas fa-layer-group"></i> 技术栈：</strong>
+        <div class="tech-tags">
+          <span>.NET Core</span><span>Vue2/3</span><span>Java</span><span>Spring Boot</span><span>Spring Cloud</span><span>MyBatis-Plus</span><span>Sa-Token</span><span>Jeecg</span><span>MySQL</span><span>Linux</span><span>Windows Server</span><span>Git</span><span>Taro.js</span><span>OCR</span><span>OSS</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-name"><i class="fas fa-cube" style="color:#a78bfa;margin-right:6px;font-size:13px;"></i>无锡xxxx有限公司 <span class="entry-role">| 全栈开发工程师（软硬件支持/运维）</span></span>
+        <span class="entry-date"><i class="far fa-calendar-alt"></i> 2017.06 – 2020.05</span>
+      </div>
+      <ul class="bullet">
+        <li>门店巡检系统从 0 到 1 搭建，实现巡检流程数字化与标准化</li>
+        <li>独立搭建员工考试平台，支持在线出题、答题、成绩统计等功能</li>
+        <li>负责公司 ERP 系统的日常维护与功能迭代</li>
+        <li>维护公司官网，保障网站正常运行与内容更新</li>
+        <li>负责云服务器运维管理，包括环境部署、安全配置、故障排查</li>
+      </ul>
+      <div class="tech"><strong><i class="fas fa-layer-group"></i> 技术栈：</strong>
+        <div class="tech-tags">
+          <span>.NET Core</span><span>HTML</span><span>jQuery</span><span>Bootstrap</span><span>Git</span><span>SQL Server</span><span>Windows Server</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 项目经历 -->
+  <div class="card">
+    <h2 class="section-title"><i class="fas fa-rocket"></i> 项目经历</h2>
+    <hr class="divider">
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-name"><i class="fas fa-file-alt" style="color:#f472b6;margin-right:6px;font-size:13px;"></i>在线考试系统 <span class="entry-role">| 全栈开发</span></span>
+        <span class="entry-date"><i class="far fa-calendar-alt"></i> 2017.07 – 2020.05</span>
+      </div>
+      <ul class="bullet">
+        <li>从 0 到 1 独立完成在线考试系统的全栈开发，服务于公司员工培训与考核</li>
+        <li>多题型支持：涵盖单选题、多选题、判断题等多种题型</li>
+        <li>支持试题批量导入/导出，提升试题管理效率</li>
+        <li>精细化分类管理：按难度、易错程度对试题进行分类，支持查重与标签化管理</li>
+        <li>智能组卷：支持固定试卷与随机试卷两种模式，满足多样化考试需求</li>
+        <li>灵活规则配置：自定义考试时间、时长、答题次数、成绩发布时间等</li>
+        <li>多终端适配：支持 PC 端与 H5 端，答题体验一致</li>
+        <li>答题体验优化：实时自动保存进度、断点续考、倒计时显示、未作答提示</li>
+        <li>自动阅卷与错题回顾功能，减轻人工批改负担</li>
+        <li>完善的角色管理体系，支持管理员、教师、考生等不同角色权限控制</li>
+      </ul>
+      <div class="tech"><strong><i class="fas fa-layer-group"></i> 技术栈：</strong>
+        <div class="tech-tags"><span>.NET Core</span><span>Layer.js</span><span>Bootstrap</span><span>SQL Server</span><span>Git</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-name"><i class="fas fa-file-alt" style="color:#f472b6;margin-right:6px;font-size:13px;"></i>门店巡检系统 <span class="entry-role">| 全栈开发</span></span>
+        <span class="entry-date"><i class="far fa-calendar-alt"></i> 2017.07 – 2020.05</span>
+      </div>
+      <ul class="bullet">
+        <li>从 0 到 1 搭建门店巡检系统，实现巡检流程数字化与标准化</li>
+        <li>标准化巡检执行：自定义巡检模板，支持后台灵活配置巡检表单</li>
+        <li>自动化现场作业：通过手机端逐项检查，支持拍照上传，系统自动添加时间与地点水印</li>
+        <li>多维报表看板：门店综合排名、失分项统计等数据可视化展示</li>
+      </ul>
+      <div class="tech"><strong><i class="fas fa-layer-group"></i> 技术栈：</strong>
+        <div class="tech-tags"><span>.NET Core</span><span>Layer.js</span><span>Bootstrap</span><span>SQL Server</span><span>Git</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-name"><i class="fas fa-file-alt" style="color:#f472b6;margin-right:6px;font-size:13px;"></i>聚合支付平台 <span class="entry-role">| 全栈开发</span></span>
+        <span class="entry-date"><i class="far fa-calendar-alt"></i> 2020.09 – 2023.06</span>
+      </div>
+      <ul class="bullet">
+        <li>单人完成全业务需求梳理，搭建报备与订单统一管理体系，实现报备表全操作线上化、订单批量导入</li>
+        <li>独立对接中金支付，完成全渠道能力接入，落地线上支付审批与一键批量支付功能</li>
+        <li>新增账户余额实时查询能力，避免出现支付余额不足的业务事故</li>
+        <li>自主设计订单与报备表的自动匹配规则，实现匹配数据自动回填</li>
+        <li>搭建电子回单集中管理体系，支持批量下载、单张在线预览，无需反复登录中金支付后台</li>
+        <li>设计双机制订单状态同步方案，通过平台回调 + 定时主动查询保障支付状态零遗漏</li>
+        <li>实现支付结果自动推送至上游匹配系统，配套手动导出功能满足审计归档要求</li>
+        <li>落地极简固定三阶段审批流（提交-审批-完成），审批通过直接触发中金支付下单，驳回自动回退</li>
+        <li>轻量化 RBAC 权限体系，仅管理员、审批员、经办员三个角色，职责清晰</li>
+      </ul>
+      <div class="tech"><strong><i class="fas fa-layer-group"></i> 技术栈：</strong>
+        <div class="tech-tags"><span>.NET Core</span><span>Layer.js</span><span>Bootstrap</span><span>SQL Server</span><span>Java</span><span>中金支付</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-name"><i class="fas fa-file-alt" style="color:#f472b6;margin-right:6px;font-size:13px;"></i>收付款系统 <span class="entry-role">| 全栈开发</span></span>
+        <span class="entry-date"><i class="far fa-calendar-alt"></i> 2021.01 – 2022.03</span>
+      </div>
+      <ul class="bullet">
+        <li>自研智能订单录入模块：手动录入表单支持字段校验防错，集成 OCR 识别能力</li>
+        <li>聚合收付全链路开发：独立对接头部聚合收付平台开放接口，落地收款、退款全流程线上化，配套退款审批节点</li>
+        <li>开发收款状态实时查询接口，资金到账后自动触发区域分账引擎，按预设规则自动完成资金划分</li>
+        <li>灵工合规支出体系开发：对接第三方灵活用工平台全量接口，打通资金合规支出链路</li>
+        <li>开发资金支出审批模块，基于角色实现极简可配置审批流，支持审批节点可视化创建与修改</li>
+        <li>支出订单全生命周期管控：覆盖灵工人员签约状态查询、支出订单线上审批、订单自动推送灵工平台、支付结果轮询查询</li>
+        <li>设计异常场景特殊状态回退机制，保障资金操作可撤销、可追溯</li>
+        <li>轻量 RBAC 与双端适配：基于用户-角色-权限三层模型开发权限管理模块，配套人员批量导入与菜单动态权限管控</li>
+        <li>独立完成小程序端 C 端用户页面、网页端管理后台与普通用户端的前后端开发适配</li>
+      </ul>
+      <div class="tech"><strong><i class="fas fa-layer-group"></i> 技术栈：</strong>
+        <div class="tech-tags"><span>Vue3</span><span>Spring Boot</span><span>MyBatis-Plus</span><span>OSS</span><span>SMS</span><span>Vant3</span><span>Linux</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-name"><i class="fas fa-file-alt" style="color:#f472b6;margin-right:6px;font-size:13px;"></i>匹配系统 <span class="entry-role">| 全栈开发</span></span>
+        <span class="entry-date"><i class="far fa-calendar-alt"></i> 2020.05 – 2022.03</span>
+      </div>
+      <ul class="bullet">
+        <li>基于 RBAC 模型实现人员、菜单的动态权限管理，支持区域可视化拖拽配置层级</li>
+        <li>可自定义拆分到最小业务单元，无需代码修改即可适配不同业务场景</li>
+        <li>独立编写多格式银行流水解析组件，基于规则引擎实现流水与订单的自动匹配</li>
+        <li>开发未匹配流水集中速览工作台，支持人工一键补配，对账效率提升 85%</li>
+        <li>独立对接短信服务 SDK，实现订单状态自动推送</li>
+        <li>集成主流电子签开放平台，开发回调接口实现电子签状态与订单状态实时同步</li>
+        <li>完成聚合支付接口全链路开发调试</li>
+        <li>独立开发可视化自定义审批流，支持订单审批节点修改</li>
+        <li>配套开发信息报备模块，实现报备数据录入、批量导入、删除全功能，自动完成报备与订单关联匹配</li>
+        <li>独立开发多银行支付格式适配层，一键生成不同银行要求的批量支付文件</li>
+        <li>打通从订单生成、对账、审批到支付的全闭环</li>
+        <li>独立完成小程序端 C 端用户页面、网页端管理后台与普通用户端的前后端开发适配</li>
+      </ul>
+      <div class="tech"><strong><i class="fas fa-layer-group"></i> 技术栈：</strong>
+        <div class="tech-tags"><span>Vue2</span><span>Spring Boot</span><span>MyBatis-Plus</span><span>OSS</span><span>SMS</span><span>Vant2</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-name"><i class="fas fa-file-alt" style="color:#f472b6;margin-right:6px;font-size:13px;"></i>业务管理服务平台 V2 <span class="entry-role">| 全栈开发</span></span>
+        <span class="entry-date"><i class="far fa-calendar-alt"></i> 2022.03 – 2022.10</span>
+      </div>
+      <ul class="bullet">
+        <li>基于公司规划对匹配系统、收付款系统进行重构拆分，落地微服务架构</li>
+        <li>独立开发订单匹配对账微服务，实现流水解析、规则引擎自动匹配、人工补配工作台</li>
+        <li>独立开发聚合收付核心微服务，覆盖收款、退款、分账全流程线上化</li>
+        <li>独立开发灵工合规支出微服务，打通第三方灵工平台全量接口与资金支出审批</li>
+        <li>独立开发基础权限管控微服务，基于 RBAC 模型实现人员、角色、菜单动态权限管理</li>
+        <li>独立开发通知与文件网关微服务，统一短信推送与文件存储服务能力</li>
+        <li>搭建前后端统一网关层，实现路由转发、鉴权、限流等统一入口管理</li>
+      </ul>
+      <div class="tech"><strong><i class="fas fa-layer-group"></i> 技术栈：</strong>
+        <div class="tech-tags"><span>UniApp</span><span>Jeecg</span><span>MySQL</span><span>Linux</span><span>OSS</span><span>SMS</span><span>OCR</span><span>Nacos</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-name"><i class="fas fa-file-alt" style="color:#f472b6;margin-right:6px;font-size:13px;"></i>业务管理服务平台 V3 <span class="entry-role">| 全栈开发</span></span>
+        <span class="entry-date"><i class="far fa-calendar-alt"></i> 2022.10 – 2023.01</span>
+      </div>
+      <ul class="bullet">
+        <li>将业务管理服务平台 V2 微服务合并后拆分为多模块架构，统一技术栈与代码管理</li>
+        <li>拓展审批流功能，支持指定人员审批、逐级审批等多种审批模式</li>
+        <li>优化区域管理配置，支持更细粒度的区域层级拆分与可视化拖拽</li>
+        <li>支持更多维度的订单配置，提升系统对不同业务场景的适配能力</li>
+        <li>使用 Taro.js 重构小程序端，实现一套代码多端运行（微信/支付宝等）</li>
+      </ul>
+      <div class="tech"><strong><i class="fas fa-layer-group"></i> 技术栈：</strong>
+        <div class="tech-tags"><span>Vue3</span><span>Spring Boot</span><span>Redis</span><span>MySQL</span><span>Linux</span><span>Taro.js</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-name"><i class="fas fa-file-alt" style="color:#f472b6;margin-right:6px;font-size:13px;"></i>业务管理服务平台 V4 <span class="entry-role">| 全栈开发</span></span>
+        <span class="entry-date"><i class="far fa-calendar-alt"></i> 2023.06 – 2025.09</span>
+      </div>
+      <ul class="bullet">
+        <li>基于 V3 版本进行全面重构升级</li>
+        <li>新增多租户功能，实现不同租户间数据隔离，支持一人入职多家企业</li>
+        <li>增加人员岗位变动记录存档，完整追踪员工职业发展轨迹</li>
+        <li>新增入离职模块，实现入职登记、离职审批全流程线上化</li>
+        <li>开发数据看板功能，基于不同角色维度统计订单信息，提供数据决策支持</li>
+        <li>将聚合支付平台能力深度融入订单匹配支付流程：订单匹配完成后自动触发支付指令，支付结果实时回写匹配状态，形成订单→匹配→支付→对账的完整闭环</li>
+      </ul>
+      <div class="tech"><strong><i class="fas fa-layer-group"></i> 技术栈：</strong>
+        <div class="tech-tags"><span>Vue3</span><span>Spring Boot</span><span>Redis</span><span>MySQL</span><span>Linux</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-name"><i class="fas fa-file-alt" style="color:#f472b6;margin-right:6px;font-size:13px;"></i>电商智能客服系统 <span class="entry-role">| AI全栈开发</span></span>
+        <span class="entry-date"><i class="far fa-calendar-alt"></i> 2025.09 – 至今</span>
+      </div>
+      <ul class="bullet">
+        <li>从 0 到 1 独立完成电商智能客服系统全栈开发，面向消费者场景解决客服回复不及时痛点</li>
+        <li>基于 Qdrant 向量数据库构建知识库，实现用户问题的语义检索与精准匹配，大幅提升回答准确率</li>
+        <li>使用 Python FastAPI 搭建后端服务，设计意图识别模块与对话流程引擎，支持多轮智能问答</li>
+        <li>前端采用 Vue3 + Vite + Element Plus 构建高效管理后台，实现知识库管理、对话日志、数据分析等功能</li>
+        <li>设计智能客服与人工客服无缝切换机制，复杂问题自动转接人工，保障用户体验</li>
+        <li>客服工作量降低约 60%，客服响应时间从分钟级缩短至秒级，显著提升客户满意度</li>
+      </ul>
+      <div class="tech"><strong><i class="fas fa-layer-group"></i> 技术栈：</strong>
+        <div class="tech-tags"><span>Vue3</span><span>Vite</span><span>Python FastAPI</span><span>MySQL</span><span>Qdrant</span><span>Element Plus</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 教育背景 -->
+  <div class="card">
+    <h2 class="section-title"><i class="fas fa-graduation-cap"></i> 教育背景</h2>
+    <hr class="divider">
+    <div class="edu-row">
+      <span class="edu-school"><i class="fas fa-university" style="color:#a78bfa;margin-right:6px;font-size:13px;"></i>xxx大学 <span class="edu-meta">| xxx专业 | 本科</span></span>
+      <span class="entry-date"><i class="far fa-calendar-alt"></i> 2017.09 – 2021.06</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer style="text-align:center;padding:20px 0 10px;color:rgba(255,255,255,.35);font-size:12px;">
+    <p>&copy; 2026 <a href="https://github.com/zhimaxu" target="_blank" style="color:rgba(255,255,255,.5);text-decoration:none;"><i class="fab fa-github"></i> zhimaxu</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
