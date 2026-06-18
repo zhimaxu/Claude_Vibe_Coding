@@ -8,12 +8,12 @@
 
 ## 📋 项目任务
 
-| # | 任务 | GitHub 仓库 | 状态 | 说明 |
-|:-:|:----:|:-----------:|:----:|:----|
-| 1 | 博客 | [`blog`](https://github.com/zhimaxu/blog) _(基于 [Firefly](https://github.com/zimovade/Firefly) 模板)_ | 🔧 维护中 | 个人博客 |
-| 2 | AI 客服 | [`ai customer service`](https://github.com/zhimaxu/ai-customer-service) | 🔄 进行中 | 智能对话客服系统 |
-| 3 | 个人主页 | [`home-page`](https://github.com/zhimaxu/home-page) | 🔄 进行中 | 个人主页与简历 |
-| 4 | 游戏 Mod | [`oni-mods`](https://github.com/zhimaxu/oni-mods) | ⬜ 待开始 | 游戏模组开发与修改 |
+|  #  |   任务   |                                              GitHub 仓库                                               |   状态    | 说明               |
+| :-: | :------: | :----------------------------------------------------------------------------------------------------: | :-------: | :----------------- |
+|  1  |   博客   | [`blog`](https://github.com/zhimaxu/blog) _(基于 [Firefly](https://github.com/zimovade/Firefly) 模板)_ | 🔧 维护中 | 个人博客           |
+|  2  | AI 客服  |                [`ai customer service`](https://github.com/zhimaxu/ai-customer-service)                 | 🔄 进行中 | 智能对话客服系统   |
+|  3  | 个人主页 |                          [`home-page`](https://github.com/zhimaxu/home-page)                           | 🔄 进行中 | 个人主页与简历     |
+|  4  | 游戏 Mod |                           [`oni-mods`](https://github.com/zhimaxu/oni-mods)                            | ⬜ 待开始 | 游戏模组开发与修改 |
 
 ---
 
@@ -82,8 +82,18 @@ C:\Code\Claude/              ← 主仓库（统一管理）
 
 5. **常见问题**
    - 如果子仓库状态混乱，可尝试删除后重新添加：
-     ```bash
+   ```bash
      git submodule deinit -f --all
      rm -rf blog ai-customer-service home-page oni-mods
      git submodule add <url> blog
-     ```
+   ```
+
+- 如果子仓库状态混乱，并且是新仓库可以这么做：
+  ```bash
+    git checkout --orphan temp_branch  # 创建一个新的分支，没有任何历史记录
+    git add -A  # 添加所有文件到该分支
+    git commit -am "Initial commit"  # 提交新的初始提交
+    git branch -D master  # 删除主分支（master）
+    git branch -m master  # 将新分支重命名为主分支（master）
+    git push -f origin master  # 强制推送到远程主分支
+  ```
