@@ -12,7 +12,8 @@
 |:-:|:----:|:-----------:|:----:|:----|
 | 1 | 博客 | [`blog`](https://github.com/zhimaxu/blog) _(基于 [Firefly](https://github.com/zimovade/Firefly) 模板)_ | 🔧 维护中 | 个人博客 |
 | 2 | AI 客服 | [`ai customer service`](https://github.com/zhimaxu/ai-customer-service) | 🔄 进行中 | 智能对话客服系统 |
-| 3 | 游戏 Mod | [`oni-mods`](https://github.com/zhimaxu/oni-mods) | ⬜ 待开始 | 游戏模组开发与修改 |
+| 3 | 个人主页 | [`home-page`](https://github.com/zhimaxu/home-page) | 🔄 进行中 | 个人主页与简历 |
+| 4 | 游戏 Mod | [`oni-mods`](https://github.com/zhimaxu/oni-mods) | ⬜ 待开始 | 游戏模组开发与修改 |
 
 ---
 
@@ -20,20 +21,21 @@
 
 - 提升编程能力
 - 体验 AI 协作开发的效率
-- 产出三个完整的实战项目
+- 产出四个完整的实战项目
 
 ---
 
 ## ⚙️ 仓库架构
 
-本项目采用 **Git Submodule** 管理三个子仓库：
+本项目采用 **Git Submodule** 管理四个子仓库：
 
 ```
 C:\Code\Claude/              ← 主仓库（统一管理）
 ├── README.md                ← 项目总览
 ├── blog/                    ← 子仓库 A（独立 .git）
 ├── ai-customer-service/     ← 子仓库 B（独立 .git）
-└── oni-mods/                ← 子仓库 C（独立 .git）
+├── home-page/               ← 子仓库 C（独立 .git）
+└── oni-mods/                ← 子仓库 D（独立 .git）
 ```
 
 ### ⚠️ 注意事项
@@ -82,6 +84,6 @@ C:\Code\Claude/              ← 主仓库（统一管理）
    - 如果子仓库状态混乱，可尝试删除后重新添加：
      ```bash
      git submodule deinit -f --all
-     rm -rf blog ai-customer-service oni-mods
+     rm -rf blog ai-customer-service home-page oni-mods
      git submodule add <url> blog
      ```
